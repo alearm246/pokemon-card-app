@@ -1,9 +1,12 @@
 import React from "react";
+import style from "./PokemonCard.module.css";
 
-function PokemonCard(){
+function PokemonCard(props){
   return(
-    <div>
-      <p>pokemon card</p>
+    <div className={style.pokemonCard}>
+      <p>name: {props.name}</p>
+      <p>type: {props.type}</p>
+      <p>hp: {props.hp}</p>
     </div>
   )
 }
