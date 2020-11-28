@@ -1,0 +1,42 @@
+.createPokemonForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  min-height: 80vh;
+  background-color: red;
+  border-radius: 10px;
+}
+
+.infoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  min-height: 20vh;
+  background-color: blue;
+  border-radius: 10px;
+  background-color: #1c1c1c;
+}
+
+.buttonContainer{
+  margin-top: 2em;
+}
+
+.button{
+  background-color: white;
+  color: black;
+  border: 0px;
+  border-bottom: 3px solid #994800;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 100px;
+  font-weight: bolder;
+}
+
+label{
+  color: white;
+}

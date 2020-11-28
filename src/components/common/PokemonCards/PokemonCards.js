@@ -23,13 +23,21 @@ function PokemonCards(){
 
   return (
     <div className={style.pokemonCards}>
-      {
-        pokemonCards.map((pokemonCard, key) => {
-          return(
-            <PokemonCard name={pokemonCard.name} type={pokemonCard.type} hp={pokemonCard.hp} key={key}/>
-          )
-        })
-      }
+      <div className={style.pokemonCardsContainer}>
+        {
+          pokemonCards.map((pokemonCard, key) => {
+            return(
+              <PokemonCard
+                name={pokemonCard.name}
+                type={pokemonCard.type}
+                hp={pokemonCard.hp}
+                pokemonImgUrl={pokemonCard.pokemonImgUrl}
+                key={key}
+              />
+            )
+          })
+        }
+      </div>
     </div>
   )
 }

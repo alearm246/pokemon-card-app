@@ -1,13 +1,15 @@
 import React from "react";
 import CreatePokemon from "../../common/CreatePokemon/CreatePokemon.js";
 import Header from "../../common/Header/Header.js";
+import Intro from "./Intro/Intro.js";
+import style from "./HomePage.module.css"
 
 
 function HomePage(){
   return (
-    <div>
+    <div className={style.homePage}>
       <Header />
-      <CreatePokemon />
+      <Intro />
     </div>
   )
 }

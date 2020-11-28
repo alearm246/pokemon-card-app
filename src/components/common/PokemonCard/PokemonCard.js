@@ -4,9 +4,14 @@ import style from "./PokemonCard.module.css";
 function PokemonCard(props){
   return(
     <div className={style.pokemonCard}>
-      <p>name: {props.name}</p>
+      <div className={style.row}>
+        <p>{props.name}</p>
+        <p>hp: {props.hp}</p>
+      </div>
+      <img className={style.pokemonImg} src={props.pokemonImgUrl} alt="pokemonImg" />
+
       <p>type: {props.type}</p>
-      <p>hp: {props.hp}</p>
+
     </div>
   )
 }
