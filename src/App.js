@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./components/module/HomePage/HomePage.js";
 import PokemonCardsPage from "./components/module/PokemonCardsPage/PokemonCardsPage.js";
+import CreatePage from "./components/module/CreatePage/CreatePage.js";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/cards" component={PokemonCardsPage} />
+          <Route exact path="/create" component={CreatePage} />
         </Switch>
       </div>
     </Router>
