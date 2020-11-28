@@ -9,20 +9,10 @@ function CreatePokemon(){
   const [moveName, setMoveName] = useState("");
   const [attackPower, setAttackPower] = useState(0);
 
-  useEffect(() => {
-    const getPokemonCard = async () => {
-      try{
-        const response = await axios.get("http://localhost:5000/pokemoncard");
-        console.log("get response: ", response);
-      }
-      catch(err){
-        console.error(err);
-      }
-    }
-    getPokemonCard();
-  }, [])
 
-  const handleClick = () => {
+
+  const handleClick = (e) => {
+    e.preventDefault();
     sendPokemonCard();
   }
 

@@ -1,0 +1,7 @@
+.pokemonCard{
+  width: 20vw;
+  min-height: 20vh;
+  background-color: red;
+  border-style: solid;
+  border-color: black;
+}
