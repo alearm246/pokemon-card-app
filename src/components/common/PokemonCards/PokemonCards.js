@@ -39,6 +39,8 @@ function PokemonCards(){
                 type={pokemonCard.type}
                 hp={pokemonCard.hp}
                 pokemonImgUrl={pokemonCard.pokemonImgUrl}
+                moveName={pokemonCard.moveName}
+                attackPower={pokemonCard.attackPower}
                 key={key}
               />
             )

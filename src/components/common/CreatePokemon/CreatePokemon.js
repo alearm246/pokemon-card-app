@@ -11,7 +11,6 @@ function CreatePokemon(){
   const [moveName, setMoveName] = useState("");
   const [attackPower, setAttackPower] = useState(0);
   const [pokemonImgUrl, setPokemonImageUrl] = useState("");
-  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
 
   useEffect(() => {
@@ -49,6 +48,8 @@ function CreatePokemon(){
         type: pokemonType,
         hp: pokemonHp,
         pokemonImgUrl: pokemonImgUrl,
+        moveName: moveName,
+        attackPower: attackPower,
         email: email
       }
 
@@ -61,79 +62,87 @@ function CreatePokemon(){
   }
 
   return(
-    <div className={style.createPokemonForm}>
-      <form>
-        <div className={style.infoContainer}>
-          <div className={style.pokemonInfo}>
-          <label>user name</label>
-          <input
-            type="text"
-            name="userName"
-            placeholder="username"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-            <label>Name</label>
-            <input
-              type="text"
-              name="pokemonName"
-              placeholder="pokemon name"
-              value={pokemonName}
-              onChange={(e) => setPokemonName(e.target.value)}
-            />
-            <br />
-            <label>Type</label>
-            <input
-              type="text"
-              name="pokemonType"
-              placeholder="pokemon type"
-              value={pokemonType}
-              onChange={(e) => setPokemonType(e.target.value)}
-            />
-            <br />
-            <label>Hp</label>
-            <input
-              type="number"
-              name="pokemonHp"
-              placeholder="pokemon hp"
-              value={pokemonHp}
-              onChange={(e) => setPokemonHp(e.target.value)}
-            />
+    <div className={style.createPokemonContainer}>
+      <div className={style.createPokemonPopUp}>
+        <form className={style.formContainer}>
+          <div className={style.infoContainer}>
+            <div className={style.pokemonInfo}>
+              <div className={style.inputContainer}>
+                <b><label>Name</label></b>
+                <input
+                  type="text"
+                  name="pokemonName"
+                  value={pokemonName}
+                  onChange={(e) => setPokemonName(e.target.value)}
+                  className={style.createPokemonInfo}
+                />
+              </div>
+              <br />
+              <div className={style.inputContainer}>
+                <b><label>Type</label></b>
+                <input
+                  type="text"
+                  name="pokemonType"
+                  value={pokemonType}
+                  onChange={(e) => setPokemonType(e.target.value)}
+                  className={style.createPokemonInfo}
+                />
+              </div>
+              <br />
+              <div className={style.inputContainer}>
+                <b><label>Hp</label></b>
+                <input
+                  type="number"
+                  name="pokemonHp"
+                  value={pokemonHp}
+                  onChange={(e) => setPokemonHp(e.target.value)}
+                  className={style.createPokemonInfo}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <br />
-        <div className={style.infoContainer}>
-          <div className={style.attackInfo}>
-            <label>move name</label>
-            <input
-              type="text"
-              name="moveName"
-              placeholder="move name"
-              value={moveName}
-              onChange={(e) => setMoveName(e.target.value)}
-            />
-            <br />
-            <label>attack power</label>
-            <input
-              type="number"
-              name="attackPower"
-              placeholder="move name"
-              value={attackPower}
-              onChange={(e) => setAttackPower(e.target.value)}
-            />
-            <input
-              type="text"
-              name="pokemonImg"
-              placeholder="image url"
-              value={pokemonImgUrl}
-              onChange={(e) => setPokemonImageUrl(e.target.value)}
-            />
+          <br />
+          <div className={style.infoContainer}>
+            <div className={style.attackInfo}>
+              <div className={style.inputContainer}>
+                <b><label>move name</label></b>
+                <input
+                  type="text"
+                  name="moveName"
+                  value={moveName}
+                  onChange={(e) => setMoveName(e.target.value)}
+                  className={style.createPokemonInfo}
+                />
+              </div>
+              <br />
+              <div className={style.inputContainer}>
+                <b><label>attack power</label></b>
+                <input
+                  type="number"
+                  name="attackPower"
+                  value={attackPower}
+                  onChange={(e) => setAttackPower(e.target.value)}
+                  className={style.createPokemonInfo}
+                />
+              </div>
+              <br />
+              <div className={style.inputContainer}>
+                <b><label>image url</label></b>
+                <input
+                  type="text"
+                  name="pokemonImg"
+                  value={pokemonImgUrl}
+                  onChange={(e) => setPokemonImageUrl(e.target.value)}
+                  className={style.createPokemonInfo}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={style.buttonContainer}>
-          <button className={style.button} onClick={handleClick}>Create Your Pokemon</button>
-        </div>
-      </form>
+          <div className={style.buttonContainer}>
+            <button className={style.button} onClick={handleClick}>Create Your Pokemon</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

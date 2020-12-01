@@ -2,33 +2,27 @@ import React, {useState,useEffect} from "react";
 import style from "./SignUpPage.module.css";
 import axios from "axios";
 import pokeBallImage from "../../../Images/pokeBall.png";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 function SignUpPage(){
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    console.log("mounting");
-    const getUsers = async () => {
-      try{
-        const response = await axios.get("http://localhost:5000/users");
-
-        console.log(response);
-      }
-      catch(err){
-        console.error(err);
-      }
-    }
-    getUsers();
-  }, [])
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
     createUser();
   }
+
+  const hasFilledOutForm = () => {
+    if(password !== "" || confirmPassword !== "" || userName !== "" || email !== ""){
+      return false;
+    }
+  }
+
 
   const createUser = async () => {
     const user = {
@@ -36,10 +30,17 @@ function SignUpPage(){
       email: email,
       password: password
     }
-    try{
-      const response = await axios.post("http://localhost:5000/users", user);
 
-      console.log("user created: ", response);
+    if(password !== confirmPassword) return console.log("passwords need to match")
+
+    //if(!hasFilledOutForm()) return console.log("all forms are required");
+
+    try{
+      const response = await axios.post("http://localhost:5000/auth/register", user);
+
+      console.log("status: ", response);
+
+      if(response.status === 200) setRedirect(true);
     }
     catch(err){
       console.error(err);
@@ -77,6 +78,14 @@ function SignUpPage(){
             onChange={(e) => setPassword(e.target.value)}
             className={style.signUpInput}
           />
+          <br />
+          <input
+            type="password"
+            placeholder="confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className={style.signUpInput}
+          />
           <div className={style.buttonContainer}>
             <button className={style.button} onClick={handleClick}>create account</button>
           </div>
@@ -85,6 +94,7 @@ function SignUpPage(){
           </div>
         </form>
       </div>
+      {redirect && <Redirect to="/login" />}
     </div>
   )
 }
