@@ -8,17 +8,24 @@ function PokemonCards(){
   const [pokemonCards, setPokemonCards] = useState([]);
 
   useEffect(() => {
-    const getPokemonCard = async () => {
+    const getCurrentUser = async () => {
       try{
-        const response = await axios.get("http://localhost:5000/pokemoncard");
-        console.log("get response: ", response);
-        setPokemonCards(response.data);
+        const response = await axios.get("http://localhost:5000/auth/me", {
+          headers: {
+            'x-access-token': localStorage.getItem("token")
+          }
+        });
+
+        console.log(response);
+        setPokemonCards(response.data.pokemonCards);
+
       }
       catch(err){
         console.error(err);
+        console.log(localStorage.getItem('token'));
       }
     }
-    getPokemonCard();
+    getCurrentUser();
   }, [])
 
   return (

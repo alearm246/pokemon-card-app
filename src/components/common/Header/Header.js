@@ -21,7 +21,9 @@ function Header(){
         </Link>
       </div>
       <div className={style.headerButtonHolder}>
-        <button className={style.headerButton}>Sign in</button>
+        <Link to="/signup">
+          <button className={style.headerButton}>Sign in</button>
+        </Link>
       </div>
     </div>
   )

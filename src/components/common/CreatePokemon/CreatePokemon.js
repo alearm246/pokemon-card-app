@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import style from "./CreatePokemon.module.css";
+import {UserInfoContext} from "../../../useContext/UserInfoProvider";
 
 function CreatePokemon(){
 
@@ -10,6 +11,29 @@ function CreatePokemon(){
   const [moveName, setMoveName] = useState("");
   const [attackPower, setAttackPower] = useState(0);
   const [pokemonImgUrl, setPokemonImageUrl] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      try{
+        const response = await axios.get("http://localhost:5000/auth/me", {
+          headers: {
+            'x-access-token': localStorage.getItem("token")
+          }
+        });
+
+        console.log(response);
+        setEmail(response.data.email);
+
+      }
+      catch(err){
+        console.error(err);
+        console.log(localStorage.getItem('token'));
+      }
+    }
+    getCurrentUser();
+  }, [])
 
 
 
@@ -24,7 +48,8 @@ function CreatePokemon(){
         name: pokemonName,
         type: pokemonType,
         hp: pokemonHp,
-        pokemonImgUrl: pokemonImgUrl
+        pokemonImgUrl: pokemonImgUrl,
+        email: email
       }
 
       const response = await axios.post("http://localhost:5000/pokemoncard", pokemonCard);
@@ -40,6 +65,14 @@ function CreatePokemon(){
       <form>
         <div className={style.infoContainer}>
           <div className={style.pokemonInfo}>
+          <label>user name</label>
+          <input
+            type="text"
+            name="userName"
+            placeholder="username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
             <label>Name</label>
             <input
               type="text"
