@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import style from "./SignUpPage.module.css";
 import axios from "axios";
 import pokeBallImage from "../../../Images/pokeBall.png";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 function SignUpPage(){
 
@@ -10,6 +10,7 @@ function SignUpPage(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ function SignUpPage(){
   }
 
   const hasFilledOutForm = () => {
-    if(password === "" || confirmPassword === "" || userName === "" || email === ""){
+    if(password !== "" || confirmPassword !== "" || userName !== "" || email !== ""){
       return false;
     }
   }
@@ -32,12 +33,14 @@ function SignUpPage(){
 
     if(password !== confirmPassword) return console.log("passwords need to match")
 
-    if(!hasFilledOutForm()) return console.log("all forms are required");
+    //if(!hasFilledOutForm()) return console.log("all forms are required");
 
     try{
       const response = await axios.post("http://localhost:5000/auth/register", user);
 
-      console.log("user created: ", response);
+      console.log("status: ", response);
+
+      if(response.status === 200) setRedirect(true);
     }
     catch(err){
       console.error(err);
@@ -91,6 +94,7 @@ function SignUpPage(){
           </div>
         </form>
       </div>
+      {redirect && <Redirect to="/login" />}
     </div>
   )
 }
