@@ -14,7 +14,17 @@ function LogInPage(){
     logInUser();
   }
 
+  const hasFilledOutForm = () => {
+    if(password === "" || email === ""){
+      return false;
+    }
+  }
+
+
   const logInUser = async () => {
+
+    if(!hasFilledOutForm()) return console.log("all forms are required");
+
     try{
       const user = {
         email: email,
