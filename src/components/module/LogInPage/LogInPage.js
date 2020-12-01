@@ -2,12 +2,13 @@ import React, {useState, useEffect} from "react";
 import style from "./LoginPage.module.css";
 import axios from "axios";
 import pokeBallImage from "../../../Images/pokeBall.png";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 function LogInPage(){
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ function LogInPage(){
 
   const logInUser = async () => {
 
-    if(!hasFilledOutForm()) return console.log("all forms are required");
+    //if(!hasFilledOutForm()) return console.log("all forms are required");
 
     try{
       const user = {
@@ -32,6 +33,8 @@ function LogInPage(){
       }
 
       const response = await axios.post("http://localhost:5000/auth/login", user);
+
+      if(response.status === 200) setRedirect(true);
 
       localStorage.setItem('token', response.data.token);
 
@@ -72,6 +75,7 @@ function LogInPage(){
           </div>
         </form>
       </div>
+      {redirect && <Redirect to="/" />}
     </div>
   )
 }

@@ -29,6 +29,8 @@ function PokemonCard(props){
 
       <div className={style.pokemonCard} key="back" onClick={handleClick}>
         <p>HP {props.hp}</p>
+        <p>attack {props.moveName}</p>
+        <p>attack power {props.attackPower}</p>
       </div>
     </ReactCardFlip>
   )
