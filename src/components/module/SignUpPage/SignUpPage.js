@@ -9,26 +9,19 @@ function SignUpPage(){
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    console.log("mounting");
-    const getUsers = async () => {
-      try{
-        const response = await axios.get("http://localhost:5000/users");
-
-        console.log(response);
-      }
-      catch(err){
-        console.error(err);
-      }
-    }
-    getUsers();
-  }, [])
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
     createUser();
   }
+
+  const hasFilledOutForm = () => {
+    if(password === "" || confirmPassword === "" || userName === "" || email === ""){
+      return false;
+    }
+  }
+
 
   const createUser = async () => {
     const user = {
@@ -36,8 +29,13 @@ function SignUpPage(){
       email: email,
       password: password
     }
+
+    if(password !== confirmPassword) return console.log("passwords need to match")
+
+    if(!hasFilledOutForm()) return console.log("all forms are required");
+
     try{
-      const response = await axios.post("http://localhost:5000/users", user);
+      const response = await axios.post("http://localhost:5000/auth/register", user);
 
       console.log("user created: ", response);
     }
@@ -75,6 +73,14 @@ function SignUpPage(){
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={style.signUpInput}
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className={style.signUpInput}
           />
           <div className={style.buttonContainer}>
