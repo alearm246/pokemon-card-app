@@ -1,0 +1,81 @@
+.logInContainer{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logInPopUp{
+  width: 25vw;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1c1c1c;
+  border-radius: 0.5em;
+  box-shadow: 3px 5.7141px 5.7141px rgba(0, 0, 0, 0.25);
+}
+
+.imageHolder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 25%;
+  height: 11vh;
+  display: flex;
+  align-items: flex-start;
+}
+
+.formContainer{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.logInInput{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.button {
+  background-color: #d4b11a;
+  color: black;
+  width: 100%;
+  border: none;
+  padding: 1em 3.2em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.67em;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.3em;
+}
+
+.signedUpInText{
+  color: white;
+}
+
+.link{
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover{
+  color: #d4b11a;
+  text-decoration: underline;
+}
